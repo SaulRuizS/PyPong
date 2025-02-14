@@ -2,39 +2,52 @@
 
 #import os
 import pygame
+from player import Player
 
 #os.environ["SDL_AUDIODRIVER"] = "dummy"
 
 #os.environ["SDL_VIDEODRIVER"] = "dummy"
 
-screen_width    = 1280
-screen_height   = 720
-posX            = screen_width/2
-posY            = screen_height/2
-rect_height     = 100
-rect_width      = 200
-
 pygame.init()
-screen = pygame.display.set_mode((screen_width,screen_height))
+
 clock = pygame.time.Clock()
+
+player_color   = pygame.Color(255,255,255,255) #White
+bg_color       = pygame.Color(35,35,35,255) #Gray
+player_width   = 30
+player_height  = 120
+
+# Set up display
+SCREEN_WIDTH, SCREEN_HEIGHT = 1280, 720
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+pygame.display.set_caption("PyPong")
+
+# Define initial position
+p1_x_pos, p1_y_pos = 50, (SCREEN_HEIGHT // 2) - player_height / 2 
+p2_x_pos, p2_y_pos = SCREEN_WIDTH - (50 + player_width), (SCREEN_HEIGHT // 2) - player_height / 2
+
+# Step size for movement
+speed = 8
+
+playerOne = Player(screen, p1_x_pos, p1_y_pos, SCREEN_WIDTH, SCREEN_HEIGHT, player_color, player_width, player_height)
+playerTwo = Player(screen, p2_x_pos, p2_y_pos, SCREEN_WIDTH, SCREEN_HEIGHT, player_color, player_width, player_height)
+
 running = True
-
-bg_color = pygame.Color(255,255,255,255)
-
 while running:
 
+    #Close game
     for event in pygame.event.get():
-
         if event.type == pygame.QUIT:
             running = False
     
-    screen.fill("black")
+    #PlayerOne movement
+    playerOne.controller(speed)
+    playerTwo.controller(speed)
 
-    #pygame.draw.circle(screen,bg_color,(640,360),200,5)
+    # Clear screen and draw updated position
+    screen.fill(bg_color)
 
-    #pygame.draw.rect(screen,bg_color,pygame.Rect(posX-rect_width/2,posY-rect_height/2,rect_width,rect_height))
-
-    pygame.display.flip()
+    #pygame.display.flip()
 
     clock.tick(60)
 

@@ -3,6 +3,7 @@
 #import os
 import pygame
 from player import Player
+from ball import Ball
 
 #os.environ["SDL_AUDIODRIVER"] = "dummy"
 
@@ -13,6 +14,7 @@ pygame.init()
 clock = pygame.time.Clock()
 
 player_color   = pygame.Color(255,255,255,255) #White
+ball_color     = pygame.Color(255,255,255,255) #White
 bg_color       = pygame.Color(35,35,35,255) #Gray
 player_width   = 30
 player_height  = 120
@@ -26,11 +28,16 @@ pygame.display.set_caption("PyPong")
 p1_x_pos, p1_y_pos = 50, (SCREEN_HEIGHT // 2) - player_height / 2 
 p2_x_pos, p2_y_pos = SCREEN_WIDTH - (50 + player_width), (SCREEN_HEIGHT // 2) - player_height / 2
 
+ball_x_pos, ball_y_pos = SCREEN_WIDTH/2, SCREEN_HEIGHT/2
+ball_radius = 10
+
 # Step size for movement
 speed = 8
 
 playerOne = Player(screen, p1_x_pos, p1_y_pos, SCREEN_WIDTH, SCREEN_HEIGHT, player_color, player_width, player_height)
 playerTwo = Player(screen, p2_x_pos, p2_y_pos, SCREEN_WIDTH, SCREEN_HEIGHT, player_color, player_width, player_height)
+
+ball = Ball(screen,ball_color,ball_x_pos,ball_y_pos,ball_radius)
 
 running = True
 while running:
@@ -42,7 +49,12 @@ while running:
     
     #PlayerOne movement
     playerOne.controller(speed)
+    
+    #PlayerTwo movement
     playerTwo.draw()
+
+    #Ball
+    ball.draw()
 
     # Clear screen and draw updated position
     screen.fill(bg_color)

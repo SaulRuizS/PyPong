@@ -42,7 +42,7 @@ while running:
     
     #PlayerOne movement
     playerOne.controller(speed)
-    playerTwo.controller(speed)
+    playerTwo.draw()
 
     # Clear screen and draw updated position
     screen.fill(bg_color)

@@ -15,20 +15,17 @@ class Player:
 
     def draw(self):
         pygame.draw.rect(self.screen,self.color,pygame.Rect(self.x_pos,self.y_pos,self.player_width,self.player_height))
+        pygame.display.update()
 
     def controller(self,speed):
         #Get keys pressed
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_UP]:
+
+        #if self.y_pos > 0 and (self.y_pos + self.player_height) < self.max_height:
+        if keys[pygame.K_UP] and self.y_pos > 0:
             self.y_pos -= speed
-        if keys[pygame.K_DOWN]:
+        if keys[pygame.K_DOWN] and self.y_pos < self.max_height - self.player_height:
             self.y_pos += speed
 
-        # Keep position within bounds
-        #self.y_pos = max(0, min(self.max_height, self.y_pos))
-
-        if self.y_pos < self.max_height and (self.y_pos + self.player_height) > 0:
-            #Draw player
-            self.draw()
-
-        pygame.display.update()
+        #Draw player
+        self.draw()    

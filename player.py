@@ -15,7 +15,6 @@ class Player:
 
     def draw(self):
         pygame.draw.rect(self.screen,self.color,pygame.Rect(self.x_pos,self.y_pos,self.player_width,self.player_height))
-        pygame.display.update()
 
     def controller(self,speed):
         #Get keys pressed

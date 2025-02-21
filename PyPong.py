@@ -72,7 +72,8 @@ while running:
     #Ball
     ball.draw()
 
-    pygame.display.flip()
+    #pygame.display.flip()
+    pygame.display.update()
 
     clock.tick(60)
 

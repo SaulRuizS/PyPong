@@ -12,4 +12,3 @@ class Ball:
 
     def draw(self):
         pygame.draw.circle(self.screen,self.color,(self.x_pos,self.y_pos),self.radius)
-        pygame.display.update()

@@ -72,6 +72,8 @@ while running:
     #Ball
     ball.draw()
 
+    ball.movement(3)
+
     #pygame.display.flip()
     pygame.display.update()
 

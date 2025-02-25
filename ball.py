@@ -18,9 +18,13 @@ class Ball:
     def draw(self):
         pygame.draw.circle(self.screen,self.color,(self.x_pos,self.y_pos),self.radius)
 
-    def movement(self,speed):
+    def movement(self,speed,switch):
 
         #print(math.sin(math.radians(self.angle)))
-        #      
-        self.x_pos -= speed * math.cos(math.radians(self.angle))
-        self.y_pos -= speed * math.sin(math.radians(self.angle))
+        if switch == 1:  
+            self.x_pos -= speed * math.cos(math.radians(self.angle))
+            self.y_pos -= speed * math.sin(math.radians(self.angle))
+        else:
+            self.x_pos += speed * math.cos(math.radians(self.angle))
+            self.y_pos += speed * math.sin(math.radians(self.angle))
+    

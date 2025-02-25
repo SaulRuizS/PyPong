@@ -45,6 +45,25 @@ ball = Ball(screen,ball_color,ball_x_pos,ball_y_pos,ball_radius)
 
 field = Field(screen,field_color)
 
+ball_speed = 3
+
+ball_switch = 1
+
+def ballLimitsY():
+
+    global ball_switch
+    # ball.draw()
+    # ball.movement(3,ball_switch)
+
+    if ball.y_pos - ball_radius > 0 + field_width and ball.y_pos + ball_radius < SCREEN_HEIGHT - field_width:
+        ball.draw()
+        ball.movement(ball_speed,ball_switch)
+    else:
+        ball_switch = ball_switch * -1
+        #print(ball_switch)
+        ball.movement(ball_speed,ball_switch)
+    
+
 running = True
 while running:
 
@@ -69,10 +88,7 @@ while running:
     #PlayerTwo movement
     playerTwo.draw()
 
-    #Ball
-    ball.draw()
-
-    ball.movement(3)
+    ballLimitsY()
 
     #pygame.display.flip()
     pygame.display.update()

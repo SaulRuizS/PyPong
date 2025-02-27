@@ -49,6 +49,9 @@ ball_speed = 3
 
 ball_switch = 1
 
+player_one_score = 0
+player_two_score = 0
+
 def ballLimitsY():
 
     global ball_switch
@@ -62,6 +65,18 @@ def ballLimitsY():
         ball_switch = ball_switch * -1
         #print(ball_switch)
         ball.movement(ball_speed,ball_switch)
+
+def scoreUpdate():
+    global player_one_score
+    global player_two_score
+
+    if ball.x_pos == 0:
+        player_two_score += 1
+        print('Player 2 Score:' + str(player_two_score))
+        
+    elif ball.x_pos == SCREEN_WIDTH:
+        player_one_score += 1
+        print('Player 1 Score:' + str(player_one_score))
     
 
 running = True
@@ -89,6 +104,8 @@ while running:
     playerTwo.draw()
 
     ballLimitsY()
+
+    scoreUpdate()
 
     #pygame.display.flip()
     pygame.display.update()

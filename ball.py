@@ -25,6 +25,6 @@ class Ball:
             self.x_pos -= speed * math.cos(math.radians(self.angle))
             self.y_pos -= speed * math.sin(math.radians(self.angle))
         else:
-            self.x_pos += speed * math.cos(math.radians(self.angle))
-            self.y_pos += speed * math.sin(math.radians(self.angle))
+            self.x_pos += speed * math.cos(math.radians(180 - self.angle))
+            self.y_pos += speed * math.sin(math.radians(180 - self.angle))
     

@@ -105,7 +105,7 @@ while running:
 
     ballLimitsY()
 
-    scoreUpdate()
+    #scoreUpdate()
 
     #pygame.display.flip()
     pygame.display.update()

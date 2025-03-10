@@ -12,19 +12,17 @@ class Ball:
         self.x_pos = x_pos
         self.y_pos = y_pos
         self.radius = radius
-        self.angle = math.floor(random.random() * 360)
+        self.angle = new_random_angle = math.floor(random.random() * 180)
         print(self.angle)
 
     def draw(self):
         pygame.draw.circle(self.screen,self.color,(self.x_pos,self.y_pos),self.radius)
 
-    def movement(self,speed,switch):
-
+    def movement(self,speed,switch,angle):
         #print(math.sin(math.radians(self.angle)))
-        if switch == 1:  
-            self.x_pos -= speed * math.cos(math.radians(self.angle))
-            self.y_pos -= speed * math.sin(math.radians(self.angle))
-        else:
-            self.x_pos += speed * math.cos(math.radians(180 - self.angle))
-            self.y_pos += speed * math.sin(math.radians(180 - self.angle))
-    
+        self.x_pos = self.x_pos + (switch * speed * math.cos(math.radians(angle)))
+        self.y_pos = self.y_pos + (switch * speed * math.sin(math.radians(angle)))
+
+    def randomAngle(self):
+        new_random_angle = math.floor(random.random() * 45)
+        return new_random_angle

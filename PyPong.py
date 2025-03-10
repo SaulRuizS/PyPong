@@ -45,26 +45,40 @@ ball = Ball(screen,ball_color,ball_x_pos,ball_y_pos,ball_radius)
 
 field = Field(screen,field_color)
 
-ball_speed = 3
+ball_speed = 7
 
 ball_switch = 1
+
+new_ball_angle = ball.angle
 
 player_one_score = 0
 player_two_score = 0
 
-def ballLimitsY():
-
+def ballBordersBehavior():
     global ball_switch
-    # ball.draw()
-    # ball.movement(3,ball_switch)
+    global new_ball_angle
 
-    if ball.y_pos - ball_radius > 0 + field_width and ball.y_pos + ball_radius < SCREEN_HEIGHT - field_width:
-        ball.draw()
-        ball.movement(ball_speed,ball_switch)
-    else:
-        ball_switch = ball_switch * -1
-        #print(ball_switch)
-        ball.movement(ball_speed,ball_switch)
+    if ball.x_pos - ball_radius < playerOne.x_pos + player_width and ball.x_pos - ball_radius > playerOne.x_pos - 2:
+        if playerOne.y_pos < ball.y_pos - ball_radius and playerOne.y_pos + player_height > ball.y_pos + ball_radius:
+            ball_switch *= -1
+            new_ball_angle = 0 - (new_ball_angle + ball.randomAngle())
+            print(ball_switch)
+            print(new_ball_angle)  
+
+    if ball.x_pos + ball_radius > playerTwo.x_pos:
+        ball_switch *= -1
+        new_ball_angle = 0 - new_ball_angle
+        print(ball_switch)
+        print(new_ball_angle)
+
+    if ball.y_pos - ball_radius < 0 + field_width or ball.y_pos + ball_radius > SCREEN_HEIGHT - field_width:
+        ball_switch *= -1
+        new_ball_angle = 180 - new_ball_angle
+        print(ball_switch)
+        print(new_ball_angle)
+
+    ball.movement(ball_speed,ball_switch,new_ball_angle)
+    ball.draw()
 
 def scoreUpdate():
     global player_one_score
@@ -103,7 +117,11 @@ while running:
     #PlayerTwo movement
     playerTwo.draw()
 
-    ballLimitsY()
+    #Ball upper and lower limits
+    ballBordersBehavior()
+
+    #Ball-Player behavior
+    #ballPlayerBehavior()
 
     #scoreUpdate()
 

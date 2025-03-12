@@ -14,6 +14,7 @@ class Player:
         self.player_height = player_height
 
     def draw(self):
+        #Draw player
         pygame.draw.rect(self.screen,self.color,pygame.Rect(self.x_pos,self.y_pos,self.player_width,self.player_height))
 
     def controller(self,speed):
@@ -26,5 +27,12 @@ class Player:
         if keys[pygame.K_DOWN] and self.y_pos < self.max_height - self.player_height:
             self.y_pos += speed
 
-        #Draw player
-        self.draw()    
+        self.draw()
+
+    def verticalMovement(self,direction,speed):
+        if direction == -1:
+            self.y_pos -= speed
+        if direction == 1:
+            self.y_pos += speed
+
+        #self.draw()

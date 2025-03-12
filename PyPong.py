@@ -54,31 +54,49 @@ new_ball_angle = ball.angle
 player_one_score = 0
 player_two_score = 0
 
-def ballBordersBehavior():
+def ballBehavior():
     global ball_switch
     global new_ball_angle
 
-    if ball.x_pos - ball_radius < playerOne.x_pos + player_width and ball.x_pos - ball_radius > playerOne.x_pos - 2:
+    if ball.x_pos - ball_radius < playerOne.x_pos + player_width and ball.x_pos - ball_radius > playerOne.x_pos + player_width/2:
         if playerOne.y_pos < ball.y_pos - ball_radius and playerOne.y_pos + player_height > ball.y_pos + ball_radius:
             ball_switch *= -1
-            new_ball_angle = 0 - (new_ball_angle + ball.randomAngle())
-            print(ball_switch)
+            new_ball_angle = 0 - (new_ball_angle + ball.randomAngle(45))
+            #print(ball_switch)
             print(new_ball_angle)  
 
-    if ball.x_pos + ball_radius > playerTwo.x_pos:
+    if ball.x_pos + ball_radius > playerTwo.x_pos and ball.x_pos + ball_radius < playerTwo.x_pos + player_width/2:
         ball_switch *= -1
-        new_ball_angle = 0 - new_ball_angle
-        print(ball_switch)
+        new_ball_angle = 0 - (new_ball_angle + ball.randomAngle(45))
+        #print(ball_switch)
         print(new_ball_angle)
 
     if ball.y_pos - ball_radius < 0 + field_width or ball.y_pos + ball_radius > SCREEN_HEIGHT - field_width:
         ball_switch *= -1
         new_ball_angle = 180 - new_ball_angle
-        print(ball_switch)
+        #print(ball_switch)
         print(new_ball_angle)
 
     ball.movement(ball_speed,ball_switch,new_ball_angle)
     ball.draw()
+
+def botBehavior():
+    direction = 1
+    bot_speed = 3
+
+    if playerTwo.y_pos > 0 + field_width and playerTwo.y_pos + player_height < SCREEN_HEIGHT - field_width:
+        if ball.x_pos > SCREEN_WIDTH // 2 and ball.x_pos < playerTwo.x_pos:
+            if ball.y_pos < playerTwo.y_pos + (player_height//2):
+                direction = -1
+                print(direction)
+                playerTwo.verticalMovement(direction,bot_speed)
+            if ball.y_pos >= playerTwo.y_pos + (player_height//2):
+                direction = 1
+                print(direction)
+                playerTwo.verticalMovement(direction,bot_speed)
+    # elif playerTwo.y_pos < 0 or playerTwo.y_pos + player_height > SCREEN_WIDTH:
+        
+    playerTwo.draw()
 
 def scoreUpdate():
     global player_one_score
@@ -88,7 +106,7 @@ def scoreUpdate():
         player_two_score += 1
         print('Player 2 Score:' + str(player_two_score))
         
-    elif ball.x_pos == SCREEN_WIDTH:
+    if ball.x_pos == SCREEN_WIDTH:
         player_one_score += 1
         print('Player 1 Score:' + str(player_one_score))
     
@@ -115,13 +133,14 @@ while running:
     playerOne.controller(speed)
     
     #PlayerTwo movement
-    playerTwo.draw()
+    #playerTwo.draw()
+    #playerTwo.controller(speed)
 
     #Ball upper and lower limits
-    ballBordersBehavior()
+    ballBehavior()
 
-    #Ball-Player behavior
-    #ballPlayerBehavior()
+    #Bot Player behavior
+    botBehavior()
 
     #scoreUpdate()
 

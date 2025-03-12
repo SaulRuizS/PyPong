@@ -12,7 +12,7 @@ class Ball:
         self.x_pos = x_pos
         self.y_pos = y_pos
         self.radius = radius
-        self.angle = new_random_angle = math.floor(random.random() * 180)
+        self.angle = new_random_angle = self.randomAngle(180)
         print(self.angle)
 
     def draw(self):
@@ -23,6 +23,6 @@ class Ball:
         self.x_pos = self.x_pos + (switch * speed * math.cos(math.radians(angle)))
         self.y_pos = self.y_pos + (switch * speed * math.sin(math.radians(angle)))
 
-    def randomAngle(self):
-        new_random_angle = math.floor(random.random() * 45)
+    def randomAngle(self,base_angle):
+        new_random_angle = math.floor(random.random() * base_angle)
         return new_random_angle

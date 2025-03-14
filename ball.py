@@ -12,8 +12,8 @@ class Ball:
         self.x_pos = x_pos
         self.y_pos = y_pos
         self.radius = radius
-        self.angle = new_random_angle = self.randomAngle(180)
-        print(self.angle)
+        self.angle = self.randomAngle(180)
+        #print(self.angle)
 
     def draw(self):
         pygame.draw.circle(self.screen,self.color,(self.x_pos,self.y_pos),self.radius)

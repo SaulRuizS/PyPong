@@ -1,4 +1,5 @@
 # PyPong
+Classic pong game coded in Python.
 
 ## Usage
 

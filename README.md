@@ -7,3 +7,4 @@ Classic pong game coded in Python.
 Feel free to contribute in any way.
 
 ## License
+[MIT](https://choosealicense.com/licenses/mit/)

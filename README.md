@@ -5,7 +5,7 @@ Classic pong game coded in Python. Only one player for the moment.
 Press the UP and DOWN keyboard arrows to move the player.
 
 ## Contributing
-Feel free to contribute in any way.
+Feel free to contribute.
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)

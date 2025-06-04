@@ -1,5 +1,5 @@
 # PyPong
-Classic pong game coded in Python. Only one player vs CPU for the moment.
+Classic pong game coded in Python. Only one player vs CPU.
 
 ## Usage
 Press the UP and DOWN keyboard arrows to move the player.
